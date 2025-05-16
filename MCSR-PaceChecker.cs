@@ -42,6 +42,9 @@ public class CPHInline
             if (IsCheated(eventLog))
                 return doNothing();
             Pace currentPace = ExtractCurrentPace(eventLog);
+            // Remain muted
+            if (currentPace.credits.HasValue)
+				return doNothing();
             PaceSplits paceSplits = GetPaceSplits();
             List<bool> splitValues = DetermineSplits(currentPace, paceSplits);
             // Mute if on pace
